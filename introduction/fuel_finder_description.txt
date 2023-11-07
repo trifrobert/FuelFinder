@@ -1,0 +1,20 @@
+Fuel Finder
+
+Introducing Fuel Finder, an application that is designed to streamline your refueling experience. 
+Based on a users location, Fuel Finder curates a list of nearby petrol stations from renowned brands such as 
+OVM, Petrom and Socar. With a single tap, users can access prices in real-time, allowing them to compare prices
+and make informed decisions about where to refuel. 
+
+How it works:
+- After pressing the app icon, you will be taken to the starting page (page 1)
+- Shortly after, the user will be taken to the login page. (page 2) 
+  On the bottom of the page there are two icons 'sign up' (page 3) and 'forgotten password'.
+- After successfully logging into the app, the user will be taken to the main page. (page 4)
+  Here, based on their location, a list with the top 5 petrol stations nearest to the user will appear. This list will
+  be in chronological order. Each petrol station will have its name/address and the distance. 
+- By tapping on one of the petrol stations, the user will be able to see the prices from that particular location
+  in real-time as well as its opening time.
+- The user will also be able to search for a particular petrol station in Timisoara to see its details. 
+  
+
+Fuel logo: https://www.vecteezy.com/free-vector/fuel-logo

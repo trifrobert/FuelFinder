@@ -7,7 +7,7 @@ import { StyleSheet, Text, View, Image  } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Image source={require('/assets/fuel_logo.png')} 
+      <Image source={require('./assets/fuel_logo.png')} 
       style={styles.image}/> 
       <Text style={styles.title}>
         <Text style={styles.fuelWord}>Fuel</Text>
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 200,
-    height: 200,
+    width: 130,
+    height: 130,
   },
 
   slogan: {

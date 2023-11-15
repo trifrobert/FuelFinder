@@ -9,19 +9,31 @@ const SignInScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const {height} = useWindowDimensions(); // retrieves automatically the dimension of device's display 
+    const {height} = useWindowDimensions(); // retrieves automatically the dimension of device's display
+
+    const onSignInPressed = () => {
+        console.warn("You pressed on the SignIn!");
+    }
+
+    const onForgotPasswordPressed = () => {
+        console.warn("You forgot your password!");
+    }
+
+    const onSignUpPressed = () => {
+        console.warn("You don't have an accout. Sign up...");
+    }
 
     return(
         <View style={styles.container}>
             <Image source={FuelLogo} style={[styles.logo , {height:height * 0.17}]} resizeMode="contain"/>
             <Text style={styles.title}>
-              <Text style={{fontWeight : 'bold', color : '#c0c0c0'}}>Fuel </Text>
-              <Text style={{color: '#c0c0c0'}}>Finder</Text>
+              <Text style={{fontWeight : 'bold', color : 'gray'}}>Fuel </Text>
+              <Text style={{color: 'gray'}}>Finder</Text>
             </Text>
             <View style={{marginVertical: 10}}>
                 <Text style={{color:'black', fontWeight:'bold', fontSize: 20}}>Sign In</Text>
             </View>
-            <Text style={{color: '#c0c0c0'}}>Hi there! Nice to see you!</Text>
+            <Text style={{color: 'gray'}}>Hi there! Nice to see you!</Text>
             <View>
                 <Text></Text>
             </View>
@@ -37,7 +49,23 @@ const SignInScreen = () => {
                 setValue={setPassword} 
                 secureTextEntry={true}
             />
-            <CustomButton/>
+            <CustomButton 
+                text="Sign In" 
+                onPress={onSignInPressed}
+                type="PRIMARY"
+            />
+            <View style={styles.redirectButtonsContainer}>
+                <CustomButton 
+                    text='Forgot Password?' 
+                    onPress={onForgotPasswordPressed}
+                    type="SECONDARY"
+                />
+                <CustomButton 
+                    text='Sign Up' 
+                    onPress={onSignUpPressed}
+                    type="TERTIARY"
+                />
+            </View>
         </View>
     )
 }
@@ -59,6 +87,12 @@ const styles = StyleSheet.create({
         fontSize: 20, // You can adjust the font size as needed
         textAlign: 'center', // Center the text horizontally
     },
+
+    redirectButtonsContainer:{
+        flexDirection: 'row', // Arrange children horizontally
+        justifyContent: 'space-between', // Add space between the buttons
+    }
+
     
 })
 

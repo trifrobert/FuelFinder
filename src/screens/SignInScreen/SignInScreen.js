@@ -53,17 +53,22 @@ const SignInScreen = () => {
                 text="Sign In" 
                 onPress={onSignInPressed}
                 type="PRIMARY"
+                bgColor='black'
+                fgColor='white'
             />
             <View style={styles.redirectButtonsContainer}>
                 <CustomButton 
                     text='Forgot Password?' 
                     onPress={onForgotPasswordPressed}
                     type="SECONDARY"
+                    fgColor='gray'
+                    bgColor='transparent'
                 />
                 <CustomButton 
                     text='Sign Up' 
                     onPress={onSignUpPressed}
-                    type="TERTIARY"
+                    type="SECONDARY"
+                    bgColor='transparent'
                 />
             </View>
         </View>
@@ -73,7 +78,7 @@ const SignInScreen = () => {
 const styles = StyleSheet.create({
     container:{
         // alignItems: 'center',
-        padding : 40,
+        padding : 50,
     },
 
     logo:{
@@ -92,8 +97,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row', // Arrange children horizontally
         justifyContent: 'space-between', // Add space between the buttons
     }
-
-    
+ 
 })
 
 export default SignInScreen

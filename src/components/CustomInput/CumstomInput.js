@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 
-const CustomInput = ({value, setValue, placeholder, secureTextEntry}) => {
+const CustomInput = ({value, setValue, placeholder, secureTextEntry, width}) => {
     return(
-        <View style={styles.container}>
+        <View style={[styles.container, { width: width ? width : '100%'}]}>
             <TextInput
                 value = {value}
                 onChangeText = {setValue}
@@ -17,7 +17,6 @@ const CustomInput = ({value, setValue, placeholder, secureTextEntry}) => {
 const styles = StyleSheet.create({
     container:{
         backgroundColor: 'white',
-        width: '95%',
         padding: 10,
 
         borderWidth: 0.5,

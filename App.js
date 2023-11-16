@@ -8,7 +8,7 @@ import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
 export default function App() {
   return (
     <SafeAreaView style={styles.root}>
-      <ForgotPasswordScreen/>
+      <SignInScreen/>
     </SafeAreaView>
   );
 }

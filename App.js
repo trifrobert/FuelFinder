@@ -9,7 +9,7 @@ import NewPasswordScreen from './src/screens/NewPasswordScreen/NewPasswordScreen
 export default function App() {
   return (
     <SafeAreaView style={styles.root}>
-      <NewPasswordScreen/>
+      <SignInScreen/>
     </SafeAreaView>
   );
 }

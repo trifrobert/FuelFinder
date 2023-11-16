@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 30, // You can adjust the font size as needed
+        fontSize: 28, // You can adjust the font size as needed
         textAlign:'left',
         fontWeight: 'bold',
         marginVertical: 20
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     text:{
         alignItems:'center',
         fontSize:15,
-        marginTop:25,
+        marginVertical:25,
         marginHorizontal: 10
     },
 

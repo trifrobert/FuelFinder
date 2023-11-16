@@ -3,12 +3,13 @@ import { View, Text, StyleSheet, Image, useWindowDimensions } from 'react-native
 import CustomInput from '../../components/CustomInput/CumstomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 
-const ForgotPasswordScreen = () => {
+const NewPasswordScreen = () => {
 
-  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
-  const onSendPressed = () => {
-    console.warn("You are going to receive a verification link..");
+  const onSubmitPressed = () => {
+    console.warn("You updated your password..");
   }
 
   const onBackToSignInPressed = () => {
@@ -21,15 +22,21 @@ const ForgotPasswordScreen = () => {
         <Text>Reset your password</Text>
       </Text>
       <CustomInput
-        placeholder={'Enter your email..'}
-        value={email} 
-        setValue={setEmail} 
+        placeholder={'Use the code you received'}
+        value={code} 
+        setValue={setCode} 
+        secureTextEntry={false}
+      />
+      <CustomInput
+        placeholder={'Enter your new password'}
+        value={newPassword} 
+        setValue={setNewPassword} 
         secureTextEntry={false}
       />
       <CustomButton
-        text="Send" 
-        onPress={onSendPressed}
-        type="TERTIARY"
+        text="Submit" 
+        onPress={onSubmitPressed}
+        type="PRIMARY"
         fgColor='#505050'
         bgColor='#f5f5f5'
       />
@@ -46,7 +53,6 @@ const ForgotPasswordScreen = () => {
 
 const styles = StyleSheet.create({
   container:{
-      // backgroundColor: "blue",
       padding : 50,
   },
 
@@ -64,4 +70,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ForgotPasswordScreen
+export default NewPasswordScreen

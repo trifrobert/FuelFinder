@@ -68,7 +68,9 @@ const SignInScreen = () => {
                     text='Sign Up' 
                     onPress={onSignUpPressed}
                     type="SECONDARY"
+                    fgColor='black'
                     bgColor='transparent'
+
                 />
             </View>
         </View>

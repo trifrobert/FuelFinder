@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { View, Text, StyleSheet} from 'react-native'
 import CustomInput from '../../components/CustomInput/CumstomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
+import { useNavigation } from '@react-navigation/native'
 
 const SignUpScreen = () => {
 
@@ -10,9 +11,10 @@ const SignUpScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
+    const navigation = useNavigation();
 
     const onRegisterPressed = () => {
-        console.warn("You registered!");
+        navigation.navigate('SignInScreen');
     }
 
     const onTermsAndConditionsPressed = () => {
@@ -20,7 +22,7 @@ const SignUpScreen = () => {
     }
 
     const onSignInPressed = () => {
-        console.warn("Back to the SignIn screen..");
+        navigation.navigate('SignInScreen');
     }
 
     return(

@@ -11,7 +11,7 @@ const StartUpScreen = () => {
   React.useEffect(() => {
     setTimeout(() => {
       navigation.navigate('SignInScreen');
-    }, 3000); // Replace 3000 with the desired delay time in milliseconds
+    }, 1000); // Replace 3000 with the desired delay time in milliseconds
   }, []);
 
   const {height} = useWindowDimensions(); // retrieves automatically the dimension of device's display 

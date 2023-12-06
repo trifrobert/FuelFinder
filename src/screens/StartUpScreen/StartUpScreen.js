@@ -1,10 +1,18 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, useWindowDimensions  } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
 import FuelLogo from '../../../assets/fuel_logo.png'
+import { useNavigation } from '@react-navigation/native'
 
 
 const StartUpScreen = () => {
+
+  const navigation = useNavigation();
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('SignInScreen');
+    }, 3000); // Replace 3000 with the desired delay time in milliseconds
+  }, []);
 
   const {height} = useWindowDimensions(); // retrieves automatically the dimension of device's display 
 

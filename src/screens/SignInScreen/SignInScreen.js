@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, useWindowDimensions } from 'react-native
 import FuelLogo from '../../../assets/fuel_logo.png'
 import CustomInput from '../../components/CustomInput/CumstomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
+import { useNavigation } from '@react-navigation/native'
 
 const SignInScreen = () => {
 
@@ -10,17 +11,18 @@ const SignInScreen = () => {
     const [password, setPassword] = useState('');
 
     const {height} = useWindowDimensions(); // retrieves automatically the dimension of device's display
+    const navigation = useNavigation();
 
     const onSignInPressed = () => {
-        console.warn("You pressed on the SignIn!");
+        navigation.navigate('HomeScreen');
     }
 
     const onForgotPasswordPressed = () => {
-        console.warn("You forgot your password!");
+        navigation.navigate('ForgotPasswordScreen');
     }
 
     const onSignUpPressed = () => {
-        console.warn("You don't have an accout. Sign up...");
+        navigation.navigate('SignUpScreen');
     }
 
     return(

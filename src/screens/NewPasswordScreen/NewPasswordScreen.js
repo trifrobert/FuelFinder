@@ -39,15 +39,15 @@ const NewPasswordScreen = () => {
         text="Submit" 
         onPress={onSubmitPressed}
         type="PRIMARY"
-        fgColor='#505050'
-        bgColor='#f5f5f5'
+        fgColor='white'
+        bgColor='black'
       />
       <CustomButton
         onPress={onBackToSignInPressed}
         text="Back to Sign In"
-        type="SECONDARY"
-        fgColor='#505050'
-        bgColor='transparent'
+        type="PRIMARY"
+        fgColor='white'
+        bgColor='black'
       />
     </View>
   )

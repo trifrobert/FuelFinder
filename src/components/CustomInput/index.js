@@ -1,1 +1,1 @@
-export {default} from './CumstomInput'
+export {default} from './CustomInput'

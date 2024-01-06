@@ -1,19 +1,21 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, Image, useWindowDimensions } from 'react-native'
 import FuelLogo from '../../../assets/fuel_logo.png'
-import CustomInput from '../../components/CustomInput/CumstomInput'
+import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
+
+const email_regex = /^\w+([\._-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})$/;
 
 const SignInScreen = () => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
     const {height} = useWindowDimensions(); // retrieves automatically the dimension of device's display
     const navigation = useNavigation();
+    const {control, handleSubmit} = useForm();
 
-    const onSignInPressed = () => {
+    const onSignInPressed = data => {
+        console.log(data);
         navigation.navigate('HomeScreen');
     }
 
@@ -39,21 +41,39 @@ const SignInScreen = () => {
             <View>
                 <Text></Text>
             </View>
-            <CustomInput 
+            <CustomInput
+                name="email"
                 placeholder="Example@example.com" 
-                value={email} 
-                setValue={setEmail} 
                 secureTextEntry={false}
+                control={control}
+                rules={{
+                    required: "Email address is required!",
+                    pattern :{
+                        value: email_regex,
+                        message: "Incorrect email format!"
+                    }
+                }}
             />
             <CustomInput
+                name="password"
                 placeholder="Password" 
-                value={password} 
-                setValue={setPassword} 
                 secureTextEntry={true}
+                control={control}
+                rules={{
+                    required: "Password is required!",
+                    minLength:{
+                        value: 8,
+                        message: "Minimum of 8 characters for the password!"
+                    },
+                    maxLength:{
+                        value: 25,
+                        message: "Maximum of 25 characters for the password!"
+                    }
+                }}
             />
             <CustomButton 
                 text="Sign In" 
-                onPress={onSignInPressed}
+                onPress={handleSubmit(onSignInPressed)}
                 type="PRIMARY"
                 bgColor='black'
                 fgColor='white'

@@ -1,16 +1,19 @@
-import React, {useState} from 'react'
-import { View, Text, StyleSheet, Image, useWindowDimensions } from 'react-native'
-import CustomInput from '../../components/CustomInput/CumstomInput'
+import React from 'react'
+import { View, Text, StyleSheet} from 'react-native'
+import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
+
+const code_regex = /^\d{4}$/;
 
 const NewPasswordScreen = () => {
 
-  const [code, setCode] = useState('');
-  const [newPassword, setNewPassword] = useState('');
   const navigation = useNavigation();
+  const {control, handleSubmit} = useForm();
 
-  const onSubmitPressed = () => {
+  const onSubmitPressed = data => {
+    console.log(data);
     navigation.navigate('SignInScreen');
   }
 
@@ -24,20 +27,46 @@ const NewPasswordScreen = () => {
         <Text>Reset your password</Text>
       </Text>
       <CustomInput
-        placeholder={'Use the code you received'}
-        value={code} 
-        setValue={setCode} 
+        name="code"
+        placeholder={'Code'}
         secureTextEntry={false}
+        control={control}
+        rules={{
+          required: "Input the code you received on your email..",
+          minLength:{
+            value: 4,
+            message: "Your code has to be 4 digits long!"
+          },
+          maxLength:{
+              value: 4,
+              message: "Your code has to be 4 digits long!"
+          },
+          pattern:{
+            value: code_regex,
+            message: "Your code has to be made just by 4 DIGITS!"
+          }
+        }}
       />
       <CustomInput
+        name='new-password'
         placeholder={'Enter your new password'}
-        value={newPassword} 
-        setValue={setNewPassword} 
-        secureTextEntry={false}
+        secureTextEntry={true}
+        control={control}
+        rules={{
+            required: "New password is required!",
+            minLength:{
+                value: 8,
+                message: "Minimum of 8 characters for the new password!"
+            },
+            maxLength:{
+                value: 25,
+                message: "Maximum of 25 characters for the new password!"
+            }
+        }}
       />
       <CustomButton
         text="Submit" 
-        onPress={onSubmitPressed}
+        onPress={handleSubmit(onSubmitPressed)}
         type="PRIMARY"
         fgColor='white'
         bgColor='black'

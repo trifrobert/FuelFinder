@@ -1,24 +1,22 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { View, Text, StyleSheet} from 'react-native'
-import CustomInput from '../../components/CustomInput/CumstomInput'
+import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
+
+const email_regex = /^\w+([\._-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})$/;
+const name_regex = /^[A-Z]+(.)*[a-z]+$/;
 
 const SignUpScreen = () => {
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
     const navigation = useNavigation();
+    const {control, handleSubmit, watch} = useForm();
+    const pwd = watch('password');
 
-    const onRegisterPressed = () => {
+    const onRegisterPressed = data => {
+        console.log(data);
         navigation.navigate('SignInScreen');
-    }
-
-    const onTermsAndConditionsPressed = () => {
-        console.warn("Check Terms and Conditions!");
     }
 
     const onSignInPressed = () => {
@@ -33,44 +31,80 @@ const SignUpScreen = () => {
             <View style = {styles.nameContainer}>
                 <CustomInput
                     width={'45%'}
+                    name="first-name"
                     placeholder="First Name" 
-                    value={firstName} 
-                    setValue={setFirstName} 
                     secureTextEntry={false}
+                    control={control}
+                    rules={{
+                        required: "Please, input your first name!",
+                        pattern: {
+                            value: name_regex,
+                            message:"Might misspelled your first name!"
+                        }
+                    }}
                 />
                 <CustomInput
                     width={'45%'}
+                    name="last-name"
                     placeholder="Last Name" 
-                    value={lastName} 
-                    setValue={setLastName} 
                     secureTextEntry={false}
+                    control={control}
+                    rules={{
+                        required: "Please, input your first name!",
+                        pattern: {
+                            value: name_regex,
+                            message:"Might misspelled your last name!"
+                        }
+                    }}
                 />
             </View>
             <CustomInput 
+                name="email"
                 placeholder="Example@example.com" 
-                value={email} 
-                setValue={setEmail} 
                 secureTextEntry={false}
+                control={control}
+                rules={{
+                    required: "Email address is required!",
+                    pattern :{
+                        value: email_regex,
+                        message: "Incorrect email format!"
+                    }
+                }}
             />
             <CustomInput
+                name="password"
                 placeholder="Password"
-                value={password}
-                setValue={setPassword}
                 secureTextEntry={true}
+                control={control}
+                rules={{
+                    required: "Password is required!",
+                    minLength:{
+                        value: 8,
+                        message: "Minimum of 8 characters for the password!"
+                    },
+                    maxLength:{
+                        value: 25,
+                        message: "Maximum of 25 characters for the password!"
+                    }
+                }}
             />
             <CustomInput
+                name="repeated-password"
                 placeholder="Repeat password"
-                value={repeatPassword}
-                setValue={setRepeatPassword}
                 secureTextEntry={true}
+                control={control}
+                rules={{
+                    required: "Please, repeat the password!",
+                    validate: value => value == pwd || "Password doesn't match!"
+                }}
             />
             <Text style={styles.text}>
-                By pressing the register button, I agree to the <Text style={styles.link} onPress={onTermsAndConditionsPressed}>Terms of Service</Text> and{' '}
-                <Text style={styles.link} onPress={onTermsAndConditionsPressed}>Privacy Policy</Text>.
+                By pressing the register button, I agree to the <Text style={styles.link}>Terms of Service</Text> and{' '}
+                <Text style={styles.link}>Privacy Policy</Text>.
             </Text>
             <CustomButton 
                 text="Register" 
-                onPress={onRegisterPressed}
+                onPress={handleSubmit(onRegisterPressed)}
                 type="PRIMARY"
                 bgColor='black'
                 fgColor='white'

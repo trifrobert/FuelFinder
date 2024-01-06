@@ -1,15 +1,19 @@
-import React, {useState} from 'react'
-import { View, Text, StyleSheet, Image, useWindowDimensions } from 'react-native'
-import CustomInput from '../../components/CustomInput/CumstomInput'
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
+
+const email_regex = /^\w+([\._-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})$/;
 
 const ForgotPasswordScreen = () => {
 
-  const [email, setEmail] = useState('');
   const navigation = useNavigation();
+  const {control, handleSubmit} = useForm();
 
-  const onSendPressed = () => {
+  const onSendPressed = data => {
+    console.log(data);
     navigation.navigate('NewPasswordScreen');
   }
 
@@ -23,14 +27,21 @@ const ForgotPasswordScreen = () => {
         <Text>Reset your password</Text>
       </Text>
       <CustomInput
+        name="email"
         placeholder={'Enter your email..'}
-        value={email} 
-        setValue={setEmail} 
         secureTextEntry={false}
+        control={control}
+        rules={{
+          required: "Email address is required!",
+          pattern :{
+              value: email_regex,
+              message: "Incorrect email format!"
+          }
+        }}
       />
       <CustomButton
         text="Send" 
-        onPress={onSendPressed}
+        onPress={handleSubmit(onSendPressed)}
         type="PRIMARY"
         fgColor='white'
         bgColor='black'

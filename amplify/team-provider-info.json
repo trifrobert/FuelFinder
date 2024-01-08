@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fuelfinder-staging-152645-authRole",
+      "UnauthRoleArn": "arn:aws:iam::271059752131:role/amplify-fuelfinder-staging-152645-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::271059752131:role/amplify-fuelfinder-staging-152645-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-fuelfinder-staging-152645-deployment",
+      "UnauthRoleName": "amplify-fuelfinder-staging-152645-unauthRole",
+      "StackName": "amplify-fuelfinder-staging-152645",
+      "StackId": "arn:aws:cloudformation:eu-north-1:271059752131:stack/amplify-fuelfinder-staging-152645/5553de40-ae3a-11ee-99f1-0af4f40258cc",
+      "AmplifyAppId": "d13x8w87hsoffd"
+    },
+    "categories": {
+      "auth": {
+        "fuelfinder": {}
+      }
+    }
+  }
+}

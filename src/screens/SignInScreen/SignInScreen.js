@@ -1,22 +1,35 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, useWindowDimensions } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, Image, useWindowDimensions, Alert } from 'react-native'
 import FuelLogo from '../../../assets/fuel_logo.png'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
+import { Auth } from 'aws-amplify'
 
-const email_regex = /^\w+([\._-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})$/;
+const username_regex = /^[a-z0-9_.-]+$/;
 
 const SignInScreen = () => {
 
     const {height} = useWindowDimensions(); // retrieves automatically the dimension of device's display
     const navigation = useNavigation();
     const {control, handleSubmit} = useForm();
+    const [loading, setLoading] = useState(false);
 
-    const onSignInPressed = data => {
-        console.log(data);
-        navigation.navigate('HomeScreen');
+    const onSignInPressed = async(data) => {
+        if(loading){
+            return;
+        }
+
+        setLoading(true);
+        try{
+            const response = await Auth.signIn(data.username, data.password);
+            console.log(response);
+            navigation.navigate('HomeScreen');
+        }catch(e){
+            Alert.alert('Error!', e.message);
+        }
+        setLoading(false);
     }
 
     const onForgotPasswordPressed = () => {
@@ -42,15 +55,19 @@ const SignInScreen = () => {
                 <Text></Text>
             </View>
             <CustomInput
-                name="email"
-                placeholder="Example@example.com" 
+                name="username"
+                placeholder="Username" 
                 secureTextEntry={false}
                 control={control}
                 rules={{
-                    required: "Email address is required!",
-                    pattern :{
-                        value: email_regex,
-                        message: "Incorrect email format!"
+                    required: "Username is required!",
+                    minLength:{
+                        value:5,
+                        message: "Username should consist of at least 5 characters!"
+                    },
+                    pattern:{
+                        value: username_regex,
+                        message: "Only lower letters, digits, '.' and '-' allowed.."
                     }
                 }}
             />
@@ -72,7 +89,7 @@ const SignInScreen = () => {
                 }}
             />
             <CustomButton 
-                text="Sign In" 
+                text={loading ? "Loading..." : "Sign In"} 
                 onPress={handleSubmit(onSignInPressed)}
                 type="PRIMARY"
                 bgColor='black'

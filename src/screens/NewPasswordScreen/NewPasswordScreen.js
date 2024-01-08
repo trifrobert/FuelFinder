@@ -1,21 +1,26 @@
 import React from 'react'
-import { View, Text, StyleSheet} from 'react-native'
+import { View, Text, StyleSheet, Alert} from 'react-native'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
+import { Auth } from 'aws-amplify';
 
-const code_regex = /^\d{4}$/;
+const code_regex = /^\d+$/;
 
 const NewPasswordScreen = () => {
 
   const navigation = useNavigation();
   const {control, handleSubmit} = useForm();
 
-  const onSubmitPressed = data => {
-    console.log(data);
-    navigation.navigate('SignInScreen');
-  }
+  const onSubmitPressed = async data => {
+    try {
+      await Auth.forgotPasswordSubmit(data.username, data.code, data.password);
+      navigation.navigate('SignInScreen');
+    } catch (e) {
+      Alert.alert('Error!', e.message);
+    }
+  };
 
   const onBackToSignInPressed = () => {
     navigation.navigate('SignInScreen');
@@ -27,28 +32,26 @@ const NewPasswordScreen = () => {
         <Text>Reset your password</Text>
       </Text>
       <CustomInput
+          placeholder="Username"
+          name="username"
+          control={control}
+          rules={{required: 'Username is required!'}}
+        />
+      <CustomInput
         name="code"
         placeholder={'Code'}
         secureTextEntry={false}
         control={control}
         rules={{
-          required: "Input the code you received on your email..",
-          minLength:{
-            value: 4,
-            message: "Your code has to be 4 digits long!"
-          },
-          maxLength:{
-              value: 4,
-              message: "Your code has to be 4 digits long!"
-          },
-          pattern:{
+          required: "Input the code you received on your email...",
+          pattern :{
             value: code_regex,
-            message: "Your code has to be made just by 4 DIGITS!"
+            message: "Incorrect code format!"
           }
         }}
       />
       <CustomInput
-        name='new-password'
+        name='password'
         placeholder={'Enter your new password'}
         secureTextEntry={true}
         control={control}

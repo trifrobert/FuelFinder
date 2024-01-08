@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
+import { Auth } from 'aws-amplify';
 
 const email_regex = /^\w+([\._-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})$/;
 
@@ -12,10 +13,14 @@ const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
   const {control, handleSubmit} = useForm();
 
-  const onSendPressed = data => {
-    console.log(data);
-    navigation.navigate('NewPasswordScreen');
-  }
+  const onSendPressed = async data => {
+    try {
+      await Auth.forgotPassword(data.username);
+      navigation.navigate('NewPasswordScreen');
+    } catch (e) {
+      Alert.alert('Error!', e.message);
+    }
+  };
 
   const onBackToSignInPressed = () => {
     navigation.navigate('SignInScreen');
@@ -27,18 +32,13 @@ const ForgotPasswordScreen = () => {
         <Text>Reset your password</Text>
       </Text>
       <CustomInput
-        name="email"
-        placeholder={'Enter your email..'}
-        secureTextEntry={false}
-        control={control}
-        rules={{
-          required: "Email address is required!",
-          pattern :{
-              value: email_regex,
-              message: "Incorrect email format!"
-          }
-        }}
-      />
+          name="username"
+          control={control}
+          placeholder="Username"
+          rules={{
+            required: 'Username code is required',
+          }}
+        />
       <CustomButton
         text="Send" 
         onPress={handleSubmit(onSendPressed)}

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable} from 'react-native'
+import {Text, StyleSheet, Pressable} from 'react-native'
 import React from 'react'
 
 const CustomButton = ({onPress, text, type, fgColor, bgColor}) => {
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
         padding: 12,
 
         borderRadius: 5,
-        borderWidth: 0.5,
-        borderColor: '#d3d3d3',
+        borderWidth: 1.5,
+        borderColor: 'black',
     },
     text_TERTIARY:{
         fontWeight: 'bold',

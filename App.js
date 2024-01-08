@@ -1,8 +1,12 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native'
 import Navigation from './src/navigation';
+import { Amplify } from 'aws-amplify';
+import config from './src/amplifyconfiguration.json';
 
-export default function App() {
+Amplify.configure(config);
+
+const App = () => {
   return (
     <SafeAreaView style={styles.root}>
       <Navigation/>
@@ -16,4 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   }
 })
+
+export default App;
 

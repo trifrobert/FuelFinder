@@ -6,8 +6,6 @@ import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 import { Auth } from 'aws-amplify';
 
-const email_regex = /^\w+([\._-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})$/;
-
 const ForgotPasswordScreen = () => {
 
   const navigation = useNavigation();

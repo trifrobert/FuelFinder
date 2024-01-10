@@ -5,7 +5,7 @@ import StartUpScreen from '../screens/StartUpScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
-import ConfirmEmailScreen from '../screens/ConfirmEmailScreen/ConfirmEmailScreen';
+import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
 import HomeScreen from '../screens/HomeScreen';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -55,9 +55,7 @@ const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown : false}}>
         {user ? (
-          <>
-            <Stack.Screen name='HomeScreen' component={HomeScreen}/>
-          </>
+          <Stack.Screen name='HomeScreen' component={HomeScreen}/>
         ) : (
           <>
             <Stack.Screen name='StartUpScreen' component={StartUpScreen}/>

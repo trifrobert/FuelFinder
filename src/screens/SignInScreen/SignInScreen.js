@@ -24,8 +24,6 @@ const SignInScreen = () => {
         setLoading(true);
         try{
             const response = await Auth.signIn(data.username, data.password);
-            console.log(response);
-            navigation.navigate('HomeScreen');
         }catch(e){
             Alert.alert('Error!', e.message);
         }

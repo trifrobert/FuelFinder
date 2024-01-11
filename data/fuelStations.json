@@ -5,7 +5,7 @@
       "longitude": 21.3153,
       "dieselPrice": 5.20,
       "petrolPrice": 5.50,
-      "name": "Arad Fuel Station 1",
+      "name": "OMV 1",
       "image": "https://example.com/fuel_station_1.jpg"
     },
     {
@@ -14,7 +14,7 @@
       "longitude": 21.3082,
       "dieselPrice": 5.15,
       "petrolPrice": 5.45,
-      "name": "Arad Fuel Station 2",
+      "name": "Petrom 2",
       "image": "https://example.com/fuel_station_2.jpg"
     },
     {
@@ -23,7 +23,7 @@
       "longitude": 21.3241,
       "dieselPrice": 5.18,
       "petrolPrice": 5.48,
-      "name": "Arad Fuel Station 3",
+      "name": "Lukoil 3",
       "image": "https://example.com/fuel_station_3.jpg"
     },
     {
@@ -32,7 +32,7 @@
       "longitude": 21.3207,
       "dieselPrice": 5.22,
       "petrolPrice": 5.52,
-      "name": "Arad Fuel Station 4",
+      "name": "OMV 4",
       "image": "https://example.com/fuel_station_4.jpg"
     }
   ]

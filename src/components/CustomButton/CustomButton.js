@@ -1,9 +1,16 @@
 import {Text, StyleSheet, Pressable} from 'react-native'
 import React from 'react'
 
-const CustomButton = ({onPress, text, type, fgColor, bgColor}) => {
+const CustomButton = ({onPress, text, type, fgColor, bgColor, marginVertical}) => {
   return (
-    <Pressable onPress={onPress} style={[styles[`container_${type}`], bgColor ? {backgroundColor: bgColor} : {backgroundColor:'black'}]}>
+    <Pressable 
+      onPress={onPress} 
+      style={[
+        styles[`container_${type}`], 
+        bgColor ? {backgroundColor: bgColor} : {backgroundColor:'black'},
+        marginVertical ? {marginVertical: marginVertical} : {marginVertical:12}
+      ]}
+    >
       <Text style={[styles[`text_${type}`], fgColor ? {color:fgColor} : {}]}>{text}</Text>
     </Pressable>
   )

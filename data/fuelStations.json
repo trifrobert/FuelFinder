@@ -6,7 +6,7 @@
       "dieselPrice": 5.20,
       "petrolPrice": 5.50,
       "name": "OMV 1",
-      "image": "https://example.com/fuel_station_1.jpg"
+      "image": "https://i.pinimg.com/564x/85/9a/f7/859af748d1eed0d67d5801a6df188a89.jpg"
     },
     {
       "id": 2,
@@ -15,7 +15,7 @@
       "dieselPrice": 5.15,
       "petrolPrice": 5.45,
       "name": "Petrom 2",
-      "image": "https://example.com/fuel_station_2.jpg"
+      "image": "https://i.kym-cdn.com/entries/icons/original/000/026/355/piper.jpg"
     },
     {
       "id": 3,
@@ -24,7 +24,7 @@
       "dieselPrice": 5.18,
       "petrolPrice": 5.48,
       "name": "Lukoil 3",
-      "image": "https://example.com/fuel_station_3.jpg"
+      "image": "https://thumbor.unica.ro/unsafe/480x300/smart/filters:format(webp):contrast(8):quality(75)/https://www.viva.ro/wp-content/uploads/2020/05/profil-4-1.jpg"
     },
     {
       "id": 4,
@@ -33,7 +33,7 @@
       "dieselPrice": 5.22,
       "petrolPrice": 5.52,
       "name": "OMV 4",
-      "image": "https://example.com/fuel_station_4.jpg"
+      "image": "https://media.cancan.ro/3IE8oEJdUV-Eeu8En1X24SEZ5uE=/1260x709/smart/filters:contrast(5):format(webp):quality(80)/https%3A%2F%2Fwww.cancan.ro%2Fwp-content%2Fuploads%2F2011%2F12%2F14918051%2F1-60725199.jpg"
     }
   ]
   

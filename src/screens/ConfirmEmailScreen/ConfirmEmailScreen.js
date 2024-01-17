@@ -72,13 +72,16 @@ const ConfirmEmailScreen = () => {
         type="PRIMARY"
         fgColor='white'
         bgColor='black'
+        marginVertical={10}
       />
       <CustomButton
         text="Resend code" 
         onPress={handleSubmit(onResendPressed)}
-        type="TERTIARY"
+        type="PRIMARY"
         fgColor='black'
         bgColor='transparent'
+        borderColor='black'
+        marginVertical={10}
       />
       <CustomButton
         onPress={onBackToSignInPressed}
@@ -86,6 +89,7 @@ const ConfirmEmailScreen = () => {
         type="SECONDARY"
         fgColor='black'
         bgColor='transparent'
+        marginVertical={10}
       />
     </View>
   )

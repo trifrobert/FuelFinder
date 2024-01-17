@@ -1,14 +1,29 @@
 import {Text, StyleSheet, Pressable} from 'react-native'
 import React from 'react'
 
-const CustomButton = ({onPress, text, type, fgColor, bgColor, marginVertical}) => {
+const CustomButton = ({
+  onPress, 
+  text, 
+  type, 
+  fgColor, 
+  bgColor, 
+  marginVertical, 
+  marginHorizontal, 
+  borderColor, 
+  width,
+  height
+}) => {
   return (
     <Pressable 
       onPress={onPress} 
       style={[
         styles[`container_${type}`], 
         bgColor ? {backgroundColor: bgColor} : {backgroundColor:'black'},
-        marginVertical ? {marginVertical: marginVertical} : {marginVertical:12}
+        marginVertical ? {marginVertical: marginVertical} : {marginVertical:12},
+        marginHorizontal ? {marginHorizontal: marginHorizontal} : {marginHorizontal: 0},
+        borderColor ? {borderColor: borderColor} : {borderColor: "transparent"},
+        width ? {width: width} : {width: 'auto'},
+        height ? {height: height} : {height: 'auto'},
       ]}
     >
       <Text style={[styles[`text_${type}`], fgColor ? {color:fgColor} : {}]}>{text}</Text>
@@ -20,11 +35,11 @@ const styles = StyleSheet.create({
 
   //------------------------FIRST STYLE------------------------//
     container_PRIMARY: {
-        alignItems: 'center',
-        marginVertical : 12,
-        width: '100%',
+        alignItems:'center',
         padding: 12,
-        borderRadius: 5,  
+
+        borderRadius: 5,
+        borderWidth: 1.5,  
     },
     text_PRIMARY:{
         fontWeight: 'bold',
@@ -33,26 +48,11 @@ const styles = StyleSheet.create({
   //------------------------SECOND STYLE------------------------//
     container_SECONDARY:{
       alignItems:'center',
-      marginVertical : 12,
     },
     text_SECONDARY:{
         fontWeight: 'bold',
         fontSize: 15,
     },
-  //------------------------THIRD STYLE------------------------//
-    container_TERTIARY:{
-        alignItems:'center',
-        marginVertical : 12,
-        padding: 12,
-
-        borderRadius: 5,
-        borderWidth: 1.5,
-        borderColor: 'black',
-    },
-    text_TERTIARY:{
-        fontWeight: 'bold',
-        fontSize: 15,
-    }
 })
 
 export default CustomButton

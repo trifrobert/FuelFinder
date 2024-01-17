@@ -1,10 +1,11 @@
 import React, { useState, useMemo, useRef } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, Image, TouchableWithoutFeedback } from 'react-native'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import CustomMarker from '../../components/CustomMarker';
 import CustomSearch from '../../components/CustomSearch';
 import FuelStationListItem from '../../components/FuelStationListItem';
 import fuelstations from '../../../data/fuelStations.json'
+import locationLogo from '../../../assets/location.png'
 
 import { Auth } from 'aws-amplify';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
@@ -15,15 +16,18 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 
 import Constants from "expo-constants";
+import * as Location from 'expo-location';
 
 const HomeScreen = () => {
 
   const [selectedFuelStation, setSelectedFuelStation] = useState(null);
+  const [location, setLocation] = useState(false);
   const [origin, setOrigin] = useState(null);
   const [destination, setDestination] = useState(null);
   const [showDirections, setShowDirections] = useState(false);
   const [distance, setDistance] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [startingPointText, setStartingPointText] = useState("");
   const mapRef = useRef(null);
 
   const snapPoints = useMemo(() => ['10%', '50%', '90%'], []);
@@ -41,6 +45,36 @@ const HomeScreen = () => {
     left: edgePaddingValue,
   };
 
+  const getLocation = async () => {
+    try {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+
+      if (status !== 'granted') {
+        console.error('Location permission not granted!');
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync({});
+      console.log('Current location:', location.coords);
+
+      // Update the state with the obtained location and set it as the origin
+      setOrigin({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+
+      // Move the map camera to the current location
+      moveTo({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+
+      setStartingPointText("Your location");
+    } catch (error) {
+      console.error('Error getting location:', error);
+    }
+  };
+ 
   const traceRouteOnReady = (args) => {
     if (args) {
       setDistance(args.distance);
@@ -63,10 +97,7 @@ const HomeScreen = () => {
     }
   };
 
-  const onPlaceSelected = (
-    details,
-    flag
-  ) => {
+  const onPlaceSelected = (details, flag ) => {
     const set = flag === "origin" ? setOrigin : setDestination;
     const position = {
       latitude: details?.geometry.location.lat || 0,
@@ -121,15 +152,23 @@ const HomeScreen = () => {
 
         {/* Display the Search Bars container */}
         <View style={styles.search}>
-          <CustomSearch 
-            placeholder={"Starting point"}
-            onPlaceSelected={(details) => {{}
-              onPlaceSelected(details, "origin")}}
-          />
+          <View style={styles.searchContainer}>
+            <CustomSearch
+              placeholder={"Starting point"}
+              onPlaceSelected={(details) => {{}
+                onPlaceSelected(details, "origin")}}
+              marginVertical={3}
+              width={'85%'}
+            />
+            <TouchableWithoutFeedback onPress={getLocation}>
+              <Image source={locationLogo} style={styles.locationLogo} resizeMode='contain' />
+            </TouchableWithoutFeedback>
+          </View>
           <CustomSearch 
             placeholder={"Where do you want to go?"}
             onPlaceSelected={(details) => {{}
               onPlaceSelected(details, "destination")}}
+            marginVertical={3}
           />
           <CustomButton
             onPress={traceRoute}
@@ -137,7 +176,7 @@ const HomeScreen = () => {
             type="PRIMARY"
             fgColor='white'
             bgColor='black'
-            marginVertical={2}
+            marginVertical={3}
           />
           {distance && duration ? (
           <View style={{flexDirection:"row", justifyContent: 'space-between'}}>
@@ -208,9 +247,23 @@ const styles = StyleSheet.create({
     elevation: 3,
     padding: 4,
     borderRadius: 8,
-    // top: Constants.statusBarHeight,
-    top:5
+    top: Constants.statusBarHeight,
   },
+  searchContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    justifyContent: 'space-between'
+  },
+  locationLogo:{
+    width: "12%", 
+    height: "90%",
+    backgroundColor: "#f8f8f8",
+    borderColor: "black",
+    borderWidth: 1.5,
+    borderRadius: 5,
+    marginVertical: 3,
+    marginHorizontal: 3,
+  }
 })
 
 export default HomeScreen

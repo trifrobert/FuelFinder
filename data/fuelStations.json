@@ -3,37 +3,37 @@
       "id": 1,
       "latitude": 46.1772,
       "longitude": 21.3153,
-      "dieselPrice": 5.20,
-      "petrolPrice": 5.50,
+      "dieselPrice": 7.17,
+      "petrolPrice": 6.71,
       "name": "OMV 1",
-      "image": "https://i.pinimg.com/564x/85/9a/f7/859af748d1eed0d67d5801a6df188a89.jpg"
+      "image": "https://www.omv.ro/images/omv/2022-10-12/1522151592627/0010/1/800/533/1/MEDIA116264_1_0.jpg"
     },
     {
       "id": 2,
       "latitude": 46.1895,
       "longitude": 21.3082,
-      "dieselPrice": 5.15,
-      "petrolPrice": 5.45,
+      "dieselPrice": 7.11,
+      "petrolPrice": 6.65,
       "name": "Petrom 2",
-      "image": "https://i.kym-cdn.com/entries/icons/original/000/026/355/piper.jpg"
+      "image": "https://www.petrom.ro/images/omv/2023-01-17/1522232395247/0010/1/800/450/1/02_teaser_box_2400x1350.jpg"
     },
     {
       "id": 3,
       "latitude": 46.1728,
       "longitude": 21.3241,
-      "dieselPrice": 5.18,
-      "petrolPrice": 5.48,
+      "dieselPrice": 7.15,
+      "petrolPrice": 6.68,
       "name": "Lukoil 3",
-      "image": "https://thumbor.unica.ro/unsafe/480x300/smart/filters:format(webp):contrast(8):quality(75)/https://www.viva.ro/wp-content/uploads/2020/05/profil-4-1.jpg"
+      "image": "https://storage0.dms.mpinteractiv.ro/media/1/1481/21330/21553745/1/lukoil.jpg"
     },
     {
       "id": 4,
       "latitude": 46.1846,
       "longitude": 21.3207,
-      "dieselPrice": 5.22,
-      "petrolPrice": 5.52,
+      "dieselPrice": 7.17,
+      "petrolPrice": 6.71,
       "name": "OMV 4",
-      "image": "https://media.cancan.ro/3IE8oEJdUV-Eeu8En1X24SEZ5uE=/1260x709/smart/filters:contrast(5):format(webp):quality(80)/https%3A%2F%2Fwww.cancan.ro%2Fwp-content%2Fuploads%2F2011%2F12%2F14918051%2F1-60725199.jpg"
+      "image": "https://www.omv.ro/images/omv/2018-11-13/1522153299999/0012/0/1730/0/3346/2872/800/1/fs-by-night.jpg"
     }
   ]
   
